@@ -1,0 +1,41 @@
+<?php
+
+function carpe1_node_view($node, $view_mode, $langcode) {
+  //dsm($node);
+  $full_menu_items = menu_tree_all_data('main-menu');
+  // dsm($full_menu_items);
+  switch ($node->type) {
+    case 'inhoud_kinesitherapie_volwassene':
+        _carpe1_set_active_menu_item($full_menu_items, 'kinesitherapie');
+      break;
+    case 'inhoud_kinesitherapie_kinder':
+      # code...
+      break;
+    case 'inhoud_logopedie':
+      # code...
+      break;
+    case 'inhoud_psychologie':
+      # code...
+      break;
+    case 'inhoud_groepslessen':
+      # code...
+      break;
+    case 'inhoud_groepsles_sociale_vaardig':
+      # code...
+      break;
+    case 'inhoud_groepsles_yoga':
+      # code...
+      break;
+  }
+  // dsm($full_menu_items);
+}
+
+function _carpe1_set_active_menu_item($full_menu_items, $active_item) {
+  foreach($full_menu_items as $menu_item) {
+    if($menu_item['link']['link_title'] == $active_item) {
+      // Set active menu
+      $menu_item['link']['options']['item_attributes']['class'][] = 'active-trail';
+      $menu_item['link']['in_active_trail'] = TRUE;
+    }
+  }
+}
